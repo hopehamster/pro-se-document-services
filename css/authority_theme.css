@@ -1,0 +1,421 @@
+:root {
+    --primary-green: #1a3b2b; /* Original Deep Green */
+    --primary-gold: #d4af37; /* Original Gold */
+    --bg-paper: #fdfbf7; /* Creamy Bond Paper Base */
+    --text-dark: #111111;
+    --text-grey: #444444;
+    
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Lato', sans-serif;
+    
+    --grid-gutter: 2rem;
+    --section-padding: 6rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-paper);
+    background-image: url('../assets/images/bond_paper_texture.png');
+    background-blend-mode: multiply;
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px; /* Wider for editorial feel */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    color: var(--primary-green);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+/* Navigation - Editorial Style */
+.editorial-nav {
+    padding: 2rem 0;
+    background: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--primary-gold);
+    border-bottom: 2px solid var(--primary-green);
+    padding-bottom: 5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--bg-paper); /* White on Hero */
+    margin: 0 1.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-gold {
+    background: var(--primary-gold);
+    color: var(--primary-green);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--primary-gold);
+}
+
+/* Hero - Asymmetrical Editorial Layout */
+.hero-editorial {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%; /* Right-weighted image */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+/* Overlay gradient only on the image side */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-green), transparent);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.hero-text-block {
+    width: 50%; /* Left half text */
+    padding-right: 4rem;
+}
+
+.eyebrow {
+    display: block;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--primary-gold);
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.hero-text-block h1 {
+    font-size: 4.5rem;
+    color: var(--primary-green);
+    margin-bottom: 2rem;
+    /* Since nav links are white on hero, let's make hero text readable against paper/dark split */
+    color: var(--bg-paper); 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-lead {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 3rem;
+    max-width: 500px;
+}
+
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.btn-primary {
+    background: var(--primary-gold);
+    color: var(--primary-green);
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.seal-icon {
+    width: 60px;
+    height: 60px;
+}
+
+/* Trust Panel (Bolster Model) */
+.trust-panel {
+    background: var(--primary-green);
+    color: var(--bg-paper);
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.trust-grid {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.trust-stat {
+    flex: 1;
+}
+
+.border-x {
+    border-left: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    color: var(--primary-gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+}
+
+/* Narrative Section */
+.narrative-section {
+    padding: var(--section-padding) 0;
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.gold-divider {
+    width: 80px;
+    height: 4px;
+    background: var(--primary-gold);
+    margin: 2rem 0;
+}
+
+.narrative-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-grey);
+}
+
+.visual-box {
+    background: var(--primary-green);
+    height: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.visual-box::after {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary-gold);
+    z-index: -1;
+}
+
+/* Specialties Grid */
+.specialties-section {
+    padding: var(--section-padding) 0;
+    background: rgba(26, 59, 43, 0.03); /* Subtle green tint */
+}
+
+.section-head {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.section-head h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.spec-card {
+    background: var(--bg-paper);
+    padding: 3rem;
+    border-top: 4px solid var(--primary-green);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.spec-card:hover {
+    transform: translateY(-10px);
+}
+
+.spec-card.highlight {
+    background: var(--primary-green);
+}
+
+.spec-card.highlight h3, .spec-card.highlight p {
+    color: var(--bg-paper);
+}
+
+.spec-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Client Hub (FAQ) */
+.client-hub-section {
+    padding: var(--section-padding) 0;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.faq-item h3 {
+    font-size: 1.2rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--primary-gold);
+    padding-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-green);
+    color: var(--bg-paper);
+    padding: 4rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-brand h4 {
+    color: var(--primary-gold);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-phone {
+    color: var(--bg-paper);
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-compliance {
+    max-width: 600px;
+    text-align: right;
+}
+
+.compliance-text {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    border-left: 2px solid var(--primary-gold);
+    padding-left: 1rem;
+    text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .hero-text-block {
+        width: 100%;
+        padding-right: 0;
+        background: rgba(26, 59, 43, 0.9); /* Dark overlay for text readability on mobile */
+        padding: 3rem;
+    }
+    
+    .hero-bg {
+        width: 100%;
+        opacity: 0.5;
+    }
+    
+    .trust-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .border-x {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 2rem 0;
+    }
+    
+    .split-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+}

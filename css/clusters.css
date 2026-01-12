@@ -1,0 +1,106 @@
+/* Service Clusters - Premium Card Style */
+.service-clusters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+.cluster {
+    background: var(--glass-bg); /* True Glass effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 3rem 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 3px solid transparent;
+    transition: var(--transition-speed);
+    border-left: 1px solid rgba(10, 38, 29, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left align for professional look */
+    text-align: left;
+}
+
+.cluster:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-premium);
+    border-bottom-color: var(--accent-gold);
+}
+
+.cluster h3 {
+    width: 100%;
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cluster ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.cluster li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+}
+
+.cluster li::before {
+    content: "â"; /* Arrow bullet */
+    color: var(--accent-gold);
+    position: absolute;
+    left: 0;
+    font-size: 0.8em;
+    top: 0.4em; /* Optical alignment */
+}
+
+/* Q&A Section */
+.services-qa {
+    max-width: 800px;
+    margin: 6rem auto 0;
+}
+
+.qa-item {
+    background: var(--white);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-green);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-speed);
+}
+
+.qa-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(5px);
+}
+
+.qa-item h4 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: var(--primary-green);
+}
+
+.qa-item p {
+    margin-bottom: 0;
+    color: var(--text-light);
+}
+
+/* Mobile Responsiveness for Clusters */
+@media (max-width: 768px) {
+    .service-clusters {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .cluster {
+        padding: 2rem;
+    }
+}

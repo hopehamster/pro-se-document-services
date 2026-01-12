@@ -1,0 +1,89 @@
+/* Pathway Section & Icons */
+.pathway-section {
+    padding: 8rem 0; /* Huge padding for drama */
+    background-color: var(--white);
+    text-align: center;
+}
+
+.pathway-steps {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 6rem;
+}
+
+.step {
+    flex: 1;
+    min-width: 300px;
+    max-width: 350px;
+    background: var(--bg-light);
+    padding: 4rem 2rem 2.5rem; /* Large top padding to clear icon */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    transition: var(--transition-speed);
+    margin-top: 2rem; /* Initial offset */
+}
+
+.step:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-md);
+    background: var(--white);
+}
+
+.step-icon {
+    width: 100px;
+    height: 100px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -50px; /* Perfectly centered on top edge */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    z-index: 10;
+}
+
+.step-icon img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+}
+
+.step h3 {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: var(--primary-green);
+}
+
+.step p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Step Number Badge */
+.step::after {
+    content: counter(step-counter);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    opacity: 0.1;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.pathway-steps {
+    counter-reset: step-counter;
+}
+
+.step {
+    counter-increment: step-counter;
+}
