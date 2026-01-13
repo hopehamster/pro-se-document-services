@@ -299,7 +299,7 @@ h1, h2, h3, h4 {
 .split-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 6rem; /* Increased gap */
     align-items: center;
 }
 
@@ -317,27 +317,31 @@ h1, h2, h3, h4 {
 }
 
 .visual-box {
-    background: var(--primary-green);
-    height: 500px;
     width: 100%;
+    height: 600px; /* Tall vertical presence */
     position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 2px;
+    box-shadow: var(--shadow-md);
 }
 
 .visual-box::after {
     content: '';
     position: absolute;
     top: 2rem;
-    left: 2rem;
+    left: -2rem; /* Offset to left for Z-pattern */
     width: 100%;
     height: 100%;
     border: 2px solid var(--primary-gold);
     z-index: -1;
 }
 
-/* Specialties Grid */
+/* Specialties Grid - High Contrast Power Block */
 .specialties-section {
     padding: var(--section-padding) 0;
-    background: rgba(26, 59, 43, 0.03); /* Subtle green tint */
+    background: var(--primary-green); /* Deep Green Background */
+    color: var(--bg-paper);
 }
 
 .section-head {
@@ -348,6 +352,11 @@ h1, h2, h3, h4 {
 .section-head h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    color: var(--bg-paper); /* Light text on dark bg */
+}
+
+.section-head p {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .specialties-grid {
@@ -359,8 +368,8 @@ h1, h2, h3, h4 {
 .spec-card {
     background: var(--bg-paper);
     padding: 3rem;
-    border-top: 4px solid var(--primary-green);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-gold); /* Gold top border */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Deeper shadow */
     transition: transform 0.3s;
 }
 
@@ -368,37 +377,59 @@ h1, h2, h3, h4 {
     transform: translateY(-10px);
 }
 
-.spec-card.highlight {
-    background: var(--primary-green);
-}
-
-.spec-card.highlight h3, .spec-card.highlight p {
-    color: var(--bg-paper);
-}
-
+/* Remove old highlight class logic */
 .spec-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
+    color: var(--primary-green);
 }
 
-/* Client Hub (FAQ) */
+.spec-card p {
+    color: var(--text-grey);
+}
+
+/* Client Hub (FAQ) - Legal Pad Style */
 .client-hub-section {
     padding: var(--section-padding) 0;
 }
 
+.client-hub-container {
+    background: var(--white);
+    border: 1px solid rgba(212, 175, 55, 0.3); /* Gold border */
+    border-left: 6px solid var(--primary-gold); /* Legal pad left border */
+    padding: 4rem;
+    box-shadow: var(--shadow-sm);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .faq-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
+    grid-template-columns: 1fr; /* Stacked for readability */
+    gap: 2rem;
     margin-top: 3rem;
 }
 
+.faq-item {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 2rem;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
 .faq-item h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--primary-green);
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--primary-gold);
-    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: none; /* Remove old border */
+    padding-bottom: 0;
+}
+
+.faq-item p {
+    font-size: 1.05rem;
+    color: var(--text-grey);
 }
 
 /* Footer */
