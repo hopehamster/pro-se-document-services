@@ -90,56 +90,76 @@ h1, h2, h3, h4 {
     border: 1px solid var(--primary-gold);
 }
 
-/* Hero - Asymmetrical Editorial Layout */
+/* Hero - Split Screen (No Overlap) */
 .hero-editorial {
-    min-height: 100vh; /* Changed to min-height for safety */
-    position: relative;
+    min-height: 90vh;
     display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding-top: 80px; /* Adjusted to match nav height exactly */
+    align-items: stretch;
+    padding-top: 0; /* Remove top padding, handled by flex */
+    background: var(--bg-paper); /* Solid background for text side */
 }
 
 .hero-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60%; /* Right-weighted image */
-    height: 100%;
+    position: relative; /* Change from absolute to relative */
+    width: 50%; /* Strictly 50% width */
+    height: auto; /* Allow height to fill */
+    min-height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0;
+    order: 2; /* Move image to right */
+    border-left: 4px solid var(--primary-gold); /* Visual separator */
 }
 
-/* Overlay gradient only on the image side */
+/* Remove gradient overlay */
 .hero-bg::after {
-    content: '';
+    display: none;
+}
+
+.hero-container {
+    width: 50%; /* Strictly 50% width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 4rem; /* Generous padding */
+    order: 1; /* Move text to left */
+    z-index: 1; /* Ensure text is above */
+}
+
+.hero-text-block {
+    width: 100%;
+    padding: 0; /* Reset internal padding */
+    margin: 0;
+    text-align: left;
+    max-width: 600px; /* Limit line length for readability */
+}
+
+/* Ensure Nav sits on top of solid background */
+.editorial-nav {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, var(--primary-green), transparent);
+    background: transparent;
+    border-bottom: none;
 }
 
-.hero-container {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-}
-
-.hero-text-block {
-    width: 50%; /* Left half text */
-    padding-left: 2rem; /* EXACT alignment with Nav padding */
-    padding-right: 4rem;
-    position: relative;
-    z-index: 20;
-    margin-top: 0;
-    padding-top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; /* Forces all children to the left edge */
+/* Responsive Stack */
+@media (max-width: 1024px) {
+    .hero-editorial {
+        flex-direction: column;
+    }
+    .hero-bg {
+        width: 100%;
+        height: 40vh;
+        order: 1; /* Image on top mobile */
+        border-left: none;
+        border-bottom: 4px solid var(--primary-gold);
+    }
+    .hero-container {
+        width: 100%;
+        order: 2;
+        padding: 4rem 2rem;
+    }
 }
 
 .eyebrow {
