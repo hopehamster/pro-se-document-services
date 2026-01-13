@@ -43,51 +43,74 @@ h1, h2, h3, h4 {
 }
 
 /* Navigation - Editorial Style */
+/* Ensure Nav sits on top of solid background */
 .editorial-nav {
-    padding: 2.5rem 0; /* More breathing room */
-    background: transparent;
     position: absolute;
-    width: 100%;
+    top: 0;
+    left: 0;
+    width: 50%; /* Constrain Nav to the Text Column (Left Side) */
+    background: transparent;
+    border-bottom: none;
     z-index: 100;
-    border-bottom: 1px solid rgba(26, 59, 43, 0.05); /* Subtle guide line */
+    padding: 2rem 4rem; /* Match hero container padding */
 }
 
+/* Nav Grid - Simplified for Left Column */
 .nav-grid {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem; /* Match container padding */
+    flex-direction: column; /* Stack Brand and Links */
+    align-items: flex-start; /* Left Align everything */
+    padding: 0; /* Removed container padding since nav has it */
+    gap: 1.5rem;
 }
 
 .brand {
     font-family: var(--font-serif);
-    font-size: 1.4rem; /* Larger brand */
-    letter-spacing: 0.15em;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
     font-weight: 700;
-    color: var(--primary-green); /* Dark green for paper contrast */
+    color: var(--primary-green);
     border-bottom: 2px solid var(--primary-gold);
     padding-bottom: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: 0; /* Reset */
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--primary-green) !important; /* Force visibility */
-    margin: 0 1.5rem;
-    font-size: 0.9rem;
+    color: var(--primary-green) !important;
+    margin: 0; /* Reset margins */
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-weight: 700; /* Bolder */
+    font-weight: 700;
+    position: relative;
 }
 
-.btn-gold {
-    background: var(--primary-gold);
-    color: var(--primary-green);
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: 1px solid var(--primary-gold);
+/* Underline hover effect for links */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary-gold);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hide the CTA button in nav since it's redundant with Hero CTA immediately below */
+.editorial-nav .btn-gold {
+    display: none; 
 }
 
 /* Hero - Split Screen (No Overlap) */
