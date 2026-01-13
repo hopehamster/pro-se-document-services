@@ -39,15 +39,17 @@ h1, h2, h3, h4 {
     color: var(--primary-green);
     font-weight: 700;
     line-height: 1.1;
+    letter-spacing: -0.02em; /* Tighter for premium feel */
 }
 
 /* Navigation - Editorial Style */
 .editorial-nav {
-    padding: 2rem 0;
+    padding: 2.5rem 0; /* More breathing room */
     background: transparent;
     position: absolute;
     width: 100%;
     z-index: 100;
+    border-bottom: 1px solid rgba(26, 59, 43, 0.05); /* Subtle guide line */
 }
 
 .nav-grid {
@@ -58,11 +60,11 @@ h1, h2, h3, h4 {
 
 .brand {
     font-family: var(--font-serif);
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
+    font-size: 1.4rem; /* Larger brand */
+    letter-spacing: 0.15em;
     font-weight: 700;
-    color: var(--primary-gold);
-    border-bottom: 2px solid var(--primary-green);
+    color: var(--primary-green); /* Dark green for paper contrast */
+    border-bottom: 2px solid var(--primary-gold);
     padding-bottom: 5px;
 }
 
