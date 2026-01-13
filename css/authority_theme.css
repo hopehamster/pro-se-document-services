@@ -70,12 +70,20 @@ h1, h2, h3, h4 {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--primary-green); /* Dark text for visibility on paper */
+    color: var(--primary-green) !important; /* Force visibility */
     margin: 0 1.5rem;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-weight: 600;
+    font-weight: 700; /* Bolder */
+}
+
+/* Ensure Logo/Brand aligns with container grid */
+.nav-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem; /* Match container padding */
 }
 
 .btn-gold {
@@ -129,6 +137,7 @@ h1, h2, h3, h4 {
 
 .hero-text-block {
     width: 50%; /* Left half text */
+    padding-left: 2rem; /* EXACT alignment with Nav padding */
     padding-right: 4rem;
     position: relative;
     z-index: 20;
