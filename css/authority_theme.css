@@ -137,6 +137,7 @@ h1, h2, h3, h4 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start; /* Forces all children to the left edge */
 }
 
 .eyebrow {
@@ -154,6 +155,7 @@ h1, h2, h3, h4 {
     color: var(--primary-green);
     margin-bottom: 2rem;
     text-shadow: none;
+    text-align: left; /* Explicitly left-aligned */
 }
 
 .hero-lead {
@@ -162,6 +164,7 @@ h1, h2, h3, h4 {
     margin-bottom: 3rem;
     max-width: 500px;
     font-weight: 500;
+    text-align: left; /* Explicitly left-aligned */
 }
 
 .hero-cta-group {
