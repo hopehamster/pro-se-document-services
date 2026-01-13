@@ -132,7 +132,8 @@ h1, h2, h3, h4 {
     padding-right: 4rem;
     position: relative;
     z-index: 20;
-    margin-top: 0; /* Ensuring no random margins */
+    margin-top: 0;
+    padding-top: 2rem; /* Add specific padding to text block */
 }
 
 .eyebrow {
