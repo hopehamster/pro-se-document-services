@@ -88,11 +88,12 @@ h1, h2, h3, h4 {
 
 /* Hero - Asymmetrical Editorial Layout */
 .hero-editorial {
-    height: 100vh;
+    min-height: 100vh; /* Changed to min-height for safety */
     position: relative;
     display: flex;
     align-items: center;
     overflow: hidden;
+    padding-top: 120px; /* Explicit space for the nav */
 }
 
 .hero-bg {
@@ -126,7 +127,9 @@ h1, h2, h3, h4 {
 .hero-text-block {
     width: 50%; /* Left half text */
     padding-right: 4rem;
-    margin-top: 8rem; /* Added to clear the absolute nav */
+    position: relative;
+    z-index: 20;
+    margin-top: 0; /* Ensuring no random margins */
 }
 
 .eyebrow {
