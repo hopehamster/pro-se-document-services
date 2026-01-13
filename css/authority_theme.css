@@ -126,6 +126,7 @@ h1, h2, h3, h4 {
 .hero-text-block {
     width: 50%; /* Left half text */
     padding-right: 4rem;
+    margin-top: 8rem; /* Added to clear the absolute nav */
 }
 
 .eyebrow {
