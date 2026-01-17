@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "mcpjungle": {
+      "url": "http://127.0.0.1:8080/mcp"
+    },
+    "nano-banana-pro": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@rafarafarafa/nano-banana-pro-mcp"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyA2C4URS0huuc0p1PhP0rqqpFzmwgk0AYM"
+      }
+    }
+  }
+}
