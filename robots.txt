@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://hopehamster.github.io/pro-se-document-services/sitemap.xml
+Sitemap: https://prosedocuserv.com/sitemap.xml
 
 # Disallow script directories (if any)
 Disallow: /scripts/
