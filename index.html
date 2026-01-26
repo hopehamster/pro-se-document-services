@@ -137,14 +137,15 @@
 
     <!-- Sticky Header (Editorial Style) -->
     <nav class="editorial-nav">
-        <div class="container nav-grid">
+        <div class="nav-grid">
             <div class="brand">PRO SE DOCUMENT SERVICES</div>
             <div class="nav-links">
                 <a href="#specialties">Specialties</a>
                 <a href="#expertise">Our Expertise</a>
                 <a href="#faq">Client Hub</a>
+                <a href="#intake">Start Your Case</a>
             </div>
-            <a href="#contact" class="btn-gold">Schedule Strategy Call</a>
+            <a href="#intake" class="btn-gold">Start Your Case</a>
         </div>
     </nav>
 
@@ -157,7 +158,7 @@
                 <h1>Precision Legal Documents.<br>Professional Law Standards.</h1>
                 <p class="hero-lead">We bring "Big Law" paralegal precision to your Pro Se case. Specialized support for Civil Litigation, Criminal Defense, and Complex Family Law.</p>
                 <div class="hero-cta-group">
-                    <a href="#contact" class="btn-primary">Start Your Case</a>
+                    <a href="#intake" class="btn-primary">Start Your Case</a>
                     <div class="trust-badge">
                         <img src="assets/images/trust_seal.png" alt="Pro Se Document Services NRS 240A Compliant Trust Seal" class="seal-icon">
                         <span>NRS 240A Compliant</span>
@@ -250,6 +251,88 @@
                     <h3>Do I need an attorney for my case?</h3>
                     <p>Many procedural matters can be handled Pro Se if the documents are correct. However, if you need legal advice or courtroom representation, you must hire an attorney.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Intake Form (FormSubmit.co) -->
+    <section id="intake" class="intake-section">
+        <div class="container intake-container">
+            <div class="section-head">
+                <h2>Start Your Case</h2>
+                <p>Tell us about your legal document needs. We will review your information and contact you within 24 hours.</p>
+            </div>
+            
+            <div class="intake-card">
+                <div class="disclaimer-box">
+                    <p><strong>IMPORTANT DISCLOSURE:</strong> We are not attorneys and cannot provide legal advice or representation in court. We prepare documents at your specific direction. Please do not include highly sensitive information like social security numbers or bank account details in this initial form.</p>
+                </div>
+
+                <form action="https://formsubmit.co/your-email@example.com" method="POST" class="intake-form">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Client Intake - Pro Se Document Services">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://prosedocuserv.com/thanks.html">
+                    <input type="hidden" name="_autoresponse" value="Thank you for contacting Pro Se Document Services. We have received your intake form and will be in touch shortly to discuss your document preparation needs. If this is an urgent deadline (less than 48 hours), please call us at 725-212-5305.">
+                    <input type="text" name="_honey" style="display:none">
+                    <!-- End Configuration -->
+
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Your Legal Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="you@email.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="practice-area">Practice Area <span class="required">*</span></label>
+                            <select id="practice-area" name="practice_area" required>
+                                <option value="" disabled selected>Select One...</option>
+                                <option value="Civil Litigation">Civil Litigation</option>
+                                <option value="Criminal Defense">Criminal Defense</option>
+                                <option value="Family Law">Family Law</option>
+                                <option value="Probate/Estate">Probate/Estate</option>
+                                <option value="Federal/Appellate">Federal/Appellate</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">How can we help you? <span class="required">*</span></label>
+                        <textarea id="description" name="description" rows="5" required placeholder="Briefly describe the documents you need drafted (e.g., 'I need to file an Answer to a Complaint' or 'I need a Motion for Custody')."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="deadline">Deadline (if any)</label>
+                            <input type="date" id="deadline" name="deadline">
+                        </div>
+                        <div class="form-group">
+                            <label for="opposing">Is the other party represented?</label>
+                            <select id="opposing" name="opposing_party_represented">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="Unsure">Unsure</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="acknowledgement" name="acknowledgement" required>
+                        <label for="acknowledgement">I understand that Pro Se Document Services is a document preparation service and NOT a law firm. I am representing myself (Pro Se) in this legal matter.</label>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-submit" onclick="this.innerText='Processing...'">Submit Intake Form</button>
+                </form>
             </div>
         </div>
     </section>

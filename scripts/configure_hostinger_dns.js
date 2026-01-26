@@ -1,6 +1,13 @@
 const https = require('https');
 
-const HOSTINGER_API_TOKEN = process.env.HOSTINGER_API_TOKEN || "TLiibrXifMjFyyW5TQULw992ZfkmkXj8uAbjCl0c7f62f769";
+// Require API token from environment variable for security
+const HOSTINGER_API_TOKEN = process.env.HOSTINGER_API_TOKEN;
+if (!HOSTINGER_API_TOKEN) {
+    console.error('Error: HOSTINGER_API_TOKEN environment variable is required');
+    console.error('Set it with: export HOSTINGER_API_TOKEN="your-token-here"');
+    process.exit(1);
+}
+
 const DOMAIN = "prosedocuserv.com";
 const GITHUB_PAGES_IPS = [
     "185.199.108.153",

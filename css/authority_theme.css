@@ -168,92 +168,20 @@ h1, h2, h3, h4 {
 
 /* Responsive Stack */
 @media (max-width: 1024px) {
-    /* Navigation - Full width on mobile */
-    .editorial-nav {
-        position: relative;
-        width: 100%;
-        padding: 1.5rem 2rem;
-        background: var(--bg-paper);
-        border-bottom: 2px solid var(--primary-gold);
-    }
-    
-    .nav-grid {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    .brand {
-        font-size: 1.2rem;
-        margin-bottom: 0;
-    }
-    
-    .nav-links {
-        display: none; /* Hide nav links on mobile, show hamburger if needed later */
-    }
-    
-    .editorial-nav .btn-gold {
-        display: block;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.85rem;
-    }
-    
-    /* Hero Section - Stacked on mobile */
     .hero-editorial {
         flex-direction: column;
-        min-height: auto;
     }
-    
     .hero-bg {
         width: 100%;
         height: 40vh;
-        min-height: 300px;
         order: 1; /* Image on top mobile */
         border-left: none;
         border-bottom: 4px solid var(--primary-gold);
     }
-    
     .hero-container {
         width: 100%;
         order: 2;
-        padding: 3rem 2rem;
-    }
-    
-    .hero-text-block {
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .eyebrow {
-        font-size: 0.75rem;
-        margin-bottom: 1rem;
-    }
-    
-    .hero-text-block h1 {
-        font-size: 2.5rem;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-    }
-    
-    .hero-lead {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-        max-width: 100%;
-    }
-    
-    .hero-cta-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-    }
-    
-    .btn-primary {
-        width: 100%;
-        text-align: center;
-        padding: 1rem 2rem;
+        padding: 4rem 2rem;
     }
 }
 
@@ -304,26 +232,6 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-.btn-gold {
-    background: var(--primary-gold);
-    color: var(--primary-green);
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    transition: transform 0.2s;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-gold:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
@@ -567,10 +475,53 @@ footer {
     text-align: left;
 }
 
-/* Additional Mobile Responsive Styles */
+/* Responsive */
 @media (max-width: 1024px) {
-    .container {
-        padding: 0 1.5rem;
+    /* Fix Navigation Layout */
+    .editorial-nav {
+        width: 100%;
+        position: relative;
+        padding: 2rem; /* Match container padding */
+    }
+
+    .hero-text-block {
+        width: 100%;
+        padding: 0;
+        margin-top: 2rem;
+        text-align: left; /* Keep left alignment for editorial feel */
+    }
+    
+    /* Scale Down Typography with Fluid Clamp */
+    .hero-text-block h1 {
+        font-size: clamp(2.5rem, 5vw + 1rem, 3.5rem);
+        text-align: left;
+    }
+
+    .hero-lead {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .hero-cta-group {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .section-head h2 {
+        font-size: clamp(2rem, 4vw + 1rem, 3rem);
+    }
+
+    .stat-number {
+        font-size: clamp(2.5rem, 5vw + 1rem, 3.5rem);
+    }
+    
+    .hero-bg {
+        width: 100%;
+        height: 40vh;
+        opacity: 0.5;
     }
     
     .trust-grid {
@@ -587,52 +538,122 @@ footer {
     
     .split-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
     }
     
-    .visual-box {
-        height: 400px;
-    }
-    
-    .section-head h2 {
-        font-size: 2rem;
-    }
-    
-    .specialties-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .client-hub-container {
-        padding: 2rem 1.5rem;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-compliance {
-        text-align: center;
-        max-width: 100%;
+    .nav-links {
+        display: none;
     }
 }
 
-/* Small Mobile Devices */
-@media (max-width: 480px) {
-    .hero-text-block h1 {
-        font-size: 2rem;
+/* Intake Section */
+.intake-section {
+    padding: var(--section-padding) 0;
+    background: var(--bg-paper);
+}
+
+.intake-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.intake-card {
+    background: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-top: 6px solid var(--primary-gold);
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.disclaimer-box {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid var(--primary-gold);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.intake-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+label {
+    font-weight: 700;
+    color: var(--primary-green);
+    font-size: 0.95rem;
+}
+
+.required {
+    color: #c0392b;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-grey);
+}
+
+.form-check input {
+    margin-top: 0.25rem;
+}
+
+.btn-submit {
+    margin-top: 1rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
     }
     
-    .hero-lead {
-        font-size: 1rem;
-    }
-    
-    .brand {
-        font-size: 1rem;
-    }
-    
-    .editorial-nav .btn-gold {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.75rem;
+    .intake-card {
+        padding: 2rem;
     }
 }
