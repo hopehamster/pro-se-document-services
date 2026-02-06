@@ -460,6 +460,15 @@ footer {
     font-weight: 700;
 }
 
+.footer-email {
+    color: var(--bg-paper);
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
 .footer-compliance {
     max-width: 600px;
     text-align: right;
