@@ -232,19 +232,19 @@
     </header>
 
     <!-- Trust-Stacking Panel (Bolster Model) -->
-    <section class="trust-panel">
+    <section class="trust-panel reveal">
         <div class="container">
             <div class="trust-grid">
-                <div class="trust-stat">
-                    <span class="stat-number">10+</span>
+                <div class="trust-stat reveal reveal-delay-1">
+                    <span class="stat-number" data-target="10" data-suffix="+">0</span>
                     <span class="stat-label">Years of "Big Law"<br>Paralegal Experience</span>
                 </div>
-                <div class="trust-stat border-x">
-                    <span class="stat-number">99%</span>
+                <div class="trust-stat border-x reveal reveal-delay-2">
+                    <span class="stat-number" data-target="99" data-suffix="%">0</span>
                     <span class="stat-label">Document Acceptance<br>Rate in NV Courts</span>
                 </div>
-                <div class="trust-stat">
-                    <span class="stat-number">50</span>
+                <div class="trust-stat reveal reveal-delay-3">
+                    <span class="stat-number" data-target="50" data-suffix="">0</span>
                     <span class="stat-label">States Served<br>(Federal Jurisdictions)</span>
                 </div>
             </div>
@@ -254,12 +254,12 @@
     <!-- Narrative Section (BVP Model) -->
     <section id="expertise" class="narrative-section">
         <div class="container split-grid">
-            <div class="narrative-visual">
+            <div class="narrative-visual reveal-left">
                 <div class="visual-box" style="background-image: url('assets/images/legal_library.webp');" role="img" aria-label="Professional law library and legal briefs representing deep case research and preparation"></div>
             </div>
-            <div class="narrative-text">
+            <div class="narrative-text reveal-right">
                 <h2>The "Sophisticated Specialist" Advantage</h2>
-                <div class="gold-divider"></div>
+                <div class="gold-divider reveal"></div>
                 <p><strong>We aren't a generic form-filling service.</strong></p>
                 <p>Our team consists of seasoned paralegals who have spent years in the trenches of corporate legal departments and major law firms. We understand that in court, <em>details matter</em>.</p>
                 <p>When you choose Pro se Document Services, you aren't just getting a typist. You are getting a specialist who understands the procedural nuances of Nevada's courts, ensuring your filings are drafted with the same precision as a top-tier firm.</p>
@@ -271,20 +271,20 @@
     <section id="specialties" class="specialties-section">
         <canvas id="particles-specialties" class="section-canvas"></canvas>
         <div class="container">
-            <div class="section-head">
+            <div class="section-head reveal">
                 <h2>Core Practice Areas</h2>
                 <p>Specialized drafting for complex matters.</p>
             </div>
             <div class="specialties-grid">
-                <div class="spec-card">
+                <div class="spec-card reveal reveal-delay-1">
                     <h3>Civil Litigation</h3>
                     <p>Complaints, Answers, Motions for Summary Judgment, Discovery Requests, Interrogatories, and Requests for Production of Documents. We handle the full spectrum of civil filings for Nevada state courts.</p>
                 </div>
-                <div class="spec-card">
+                <div class="spec-card reveal reveal-delay-2">
                     <h3>Probate & Estate</h3>
                     <p>Guardianship petitions, Estate Administration filings, Probate applications, Letters Testamentary, and Notices to Creditors. We navigate the procedural requirements of Nevada probate courts with precision.</p>
                 </div>
-                <div class="spec-card">
+                <div class="spec-card reveal reveal-delay-3">
                     <h3>Federal & Appellate</h3>
                     <p>Writs of Certiorari, Mandamus, Federal Habeas Corpus petitions, Civil Rights (Section 1983) complaints, and Federal Appeals. We draft for both the Ninth Circuit and the U.S. District Court of Nevada.</p>
                 </div>
@@ -295,22 +295,22 @@
     <!-- How It Works (Process Section — NEW) -->
     <section id="process" class="process-section">
         <div class="container">
-            <div class="section-head">
+            <div class="section-head reveal">
                 <h2>How It Works</h2>
                 <p>Three simple steps from intake to filing-ready documents.</p>
             </div>
             <div class="process-grid">
-                <div class="process-step">
+                <div class="process-step reveal reveal-delay-1">
                     <span class="step-number">01</span>
                     <h3>Intake & Review</h3>
                     <p>Submit your case details through our secure intake form. We review your situation, identify the documents needed, and provide a clear scope of work and timeline within 24 hours.</p>
                 </div>
-                <div class="process-step">
+                <div class="process-step reveal reveal-delay-2">
                     <span class="step-number">02</span>
                     <h3>Precision Drafting</h3>
                     <p>Our experienced paralegals draft your documents to court-ready standards. Every filing follows the exact formatting, citation, and procedural requirements of the relevant jurisdiction.</p>
                 </div>
-                <div class="process-step">
+                <div class="process-step reveal reveal-delay-3">
                     <span class="step-number">03</span>
                     <h3>Review & Deliver</h3>
                     <p>You review the completed documents and request any revisions at your direction. Once approved, we deliver filing-ready copies with instructions for submission to the court.</p>
@@ -321,7 +321,7 @@
 
     <!-- Client Question Hub (AEO Optimized — Expanded) -->
     <section id="faq" class="client-hub-section">
-        <div class="container client-hub-container">
+        <div class="container client-hub-container reveal-scale">
             <div class="section-head">
                 <h2>Client Question Hub</h2>
             </div>
@@ -365,12 +365,12 @@
     <!-- Client Intake Form (FormSubmit.co) -->
     <section id="intake" class="intake-section">
         <div class="container intake-container">
-            <div class="section-head">
+            <div class="section-head reveal">
                 <h2>Start Your Case</h2>
                 <p>Tell us about your legal document needs. We will review your information and contact you within 24 hours.</p>
             </div>
 
-            <div class="intake-card">
+            <div class="intake-card reveal reveal-delay-1">
                 <div class="disclaimer-box">
                     <p><strong>IMPORTANT DISCLOSURE:</strong> We are not attorneys and cannot provide legal advice or representation in court. We prepare documents at your specific direction. Please do not include highly sensitive information like social security numbers or bank account details in this initial form.</p>
                 </div>
@@ -464,7 +464,7 @@
     <!-- Three.js for Particle Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-    // Mobile navigation toggle
+    // ── Mobile Navigation Toggle ──
     (function() {
         var toggle = document.querySelector('.nav-toggle');
         var links = document.querySelector('.nav-links');
@@ -475,7 +475,6 @@
                 toggle.classList.toggle('active');
                 links.classList.toggle('nav-open');
             });
-            // Close menu when a link is clicked
             links.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     toggle.setAttribute('aria-expanded', 'false');
@@ -484,6 +483,62 @@
                 });
             });
         }
+    })();
+
+    // ── Scroll Reveal (Intersection Observer) ──
+    (function() {
+        var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        if (!('IntersectionObserver' in window)) {
+            // Fallback: show everything immediately
+            revealEls.forEach(function(el) { el.classList.add('reveal-visible'); });
+            return;
+        }
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        revealEls.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // ── Trust Stats Counter ──
+    (function() {
+        var stats = document.querySelectorAll('.stat-number[data-target]');
+        if (!stats.length) return;
+        var counted = false;
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && !counted) {
+                    counted = true;
+                    stats.forEach(function(stat) {
+                        var target = parseInt(stat.getAttribute('data-target'));
+                        var suffix = stat.getAttribute('data-suffix') || '';
+                        var duration = 1800;
+                        var start = performance.now();
+
+                        function step(now) {
+                            var elapsed = now - start;
+                            var progress = Math.min(elapsed / duration, 1);
+                            // Ease out cubic
+                            var ease = 1 - Math.pow(1 - progress, 3);
+                            var current = Math.round(ease * target);
+                            stat.textContent = current + suffix;
+                            if (progress < 1) requestAnimationFrame(step);
+                        }
+                        requestAnimationFrame(step);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        var panel = document.querySelector('.trust-panel');
+        if (panel) observer.observe(panel);
     })();
 
     // Three.js Particle Network — Specialties Section
