@@ -21,6 +21,196 @@
     font-size: 1.1rem;
 }
 
+/* ── Post Hero Image ── */
+
+.post-hero-image {
+    width: 100%;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-hero-image.hero-basics {
+    background: linear-gradient(135deg, #1a3b2b 0%, #2d6a4f 40%, #d4af37 100%);
+}
+
+.post-hero-image.hero-civil {
+    background: linear-gradient(135deg, #1a3b2b 0%, #1e3a5f 40%, #2563eb 100%);
+}
+
+.post-hero-image.hero-probate {
+    background: linear-gradient(135deg, #1a3b2b 0%, #3b1f5e 40%, #7c3aed 100%);
+}
+
+.post-hero-image.hero-federal {
+    background: linear-gradient(135deg, #1a3b2b 0%, #5f1e1e 40%, #dc2626 100%);
+}
+
+.post-hero-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(212,175,55,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 40%);
+    animation: subtleShift 15s ease-in-out infinite alternate;
+}
+
+@keyframes subtleShift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(3%, -3%); }
+}
+
+.post-hero-image .hero-icon {
+    font-size: 5rem;
+    opacity: 0.15;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bg-paper);
+}
+
+/* ── Service Page Styles ── */
+
+.service-hero {
+    background: var(--primary-green);
+    padding: 5rem 0 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(212,175,55,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+}
+
+.service-hero h1 {
+    color: var(--bg-paper);
+    font-size: 3rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.service-hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.service-content {
+    padding: var(--section-padding) 0;
+}
+
+.service-content h2 {
+    font-size: 2rem;
+    margin: 2.5rem 0 1rem;
+    color: var(--primary-green);
+}
+
+.service-content h3 {
+    font-size: 1.4rem;
+    margin: 2rem 0 0.75rem;
+    color: var(--primary-green);
+}
+
+.service-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-grey);
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+}
+
+.service-content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--text-grey);
+    line-height: 1.8;
+    max-width: 800px;
+}
+
+.service-content li {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+}
+
+.service-docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0 3rem;
+}
+
+.doc-card {
+    background: var(--white);
+    border-top: 4px solid var(--primary-gold);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.doc-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-green);
+}
+
+.doc-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.service-cta {
+    background: var(--primary-green);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.service-cta h2 {
+    color: var(--bg-paper);
+    margin-bottom: 1rem;
+}
+
+.service-cta p {
+    color: rgba(255,255,255,0.8);
+    margin: 0 auto 2rem;
+    max-width: 600px;
+}
+
+.service-related {
+    padding: 4rem 0;
+}
+
+.service-related h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .post-hero-image {
+        height: 200px;
+    }
+    .service-hero h1 {
+        font-size: 2.2rem;
+    }
+}
+
 /* ── Category Filter Chips ── */
 
 .blog-filters {
