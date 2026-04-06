@@ -10,9 +10,11 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# IDE files
+# IDE and AI agent files
 .vscode/
 .idea/
+.claude/
+.cursor/
 *.swp
 *.swo
 *~

@@ -10,6 +10,9 @@
     
     --grid-gutter: 2rem;
     --section-padding: 6rem;
+    --white: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 * {
@@ -20,7 +23,7 @@
 
 body {
     background-color: var(--bg-paper);
-    background-image: url('../assets/images/bond_paper_texture.png');
+    background-image: url('../assets/images/bond_paper_texture.webp');
     background-blend-mode: multiply;
     font-family: var(--font-sans);
     color: var(--text-dark);
@@ -661,8 +664,169 @@ textarea {
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+
     .intake-card {
         padding: 2rem;
     }
+}
+
+/* ═══════════════════════════════════════════
+   Hamburger Menu (Mobile Navigation)
+   ═══════════════════════════════════════════ */
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 200;
+}
+
+.hamburger-line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: var(--primary-green);
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 2px;
+}
+
+.nav-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.nav-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -7px);
+}
+
+@media (max-width: 1024px) {
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--bg-paper);
+        padding: 1rem 0;
+        gap: 0.5rem;
+        border-top: 2px solid var(--primary-gold);
+        margin-top: 1rem;
+    }
+
+    .nav-links.nav-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 0.75rem 0;
+        font-size: 1rem;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   Process Section (How It Works)
+   ═══════════════════════════════════════════ */
+
+.process-section {
+    padding: var(--section-padding) 0;
+    background: var(--bg-paper);
+}
+
+.process-section .section-head h2 {
+    color: var(--primary-green);
+}
+
+.process-section .section-head p {
+    color: var(--text-grey);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.process-step {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    position: relative;
+}
+
+.step-number {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.process-step h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-green);
+}
+
+.process-step p {
+    font-size: 1rem;
+    color: var(--text-grey);
+    line-height: 1.7;
+}
+
+/* Connecting line between steps */
+.process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -1.5rem;
+    width: 3rem;
+    height: 2px;
+    background: var(--primary-gold);
+    opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .process-step:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   Three.js Canvas (Section Background)
+   ═══════════════════════════════════════════ */
+
+.specialties-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.specialties-section .container {
+    position: relative;
+    z-index: 1;
 }
