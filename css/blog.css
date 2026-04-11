@@ -670,3 +670,78 @@
         font-size: 1.5rem;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   JITTER-STYLE ANIMATIONS (appended Apr 2026)
+   Feature 4: Animated blog hero mesh gradients
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes meshRotate {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes meshHueDrift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(15deg); }
+}
+
+.post-hero-image {
+    isolation: isolate;
+}
+
+.post-hero-image::after {
+    content: '';
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+        from 0deg at 50% 50%,
+        transparent 0deg,
+        rgba(212, 175, 55, 0.12) 60deg,
+        transparent 120deg,
+        rgba(255, 255, 255, 0.08) 200deg,
+        transparent 280deg,
+        rgba(212, 175, 55, 0.10) 340deg,
+        transparent 360deg
+    );
+    animation: meshRotate 60s linear infinite, meshHueDrift 20s ease-in-out infinite;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 0;
+}
+
+/* Dot pattern overlay for category hero backgrounds */
+.post-hero-image.hero-basics {
+    background-image:
+        linear-gradient(135deg, #1a3b2b 0%, #2d6a4f 40%, #d4af37 100%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 28px 28px;
+}
+
+.post-hero-image.hero-civil {
+    background-image:
+        linear-gradient(135deg, #1a3b2b 0%, #1e3a5f 40%, #2563eb 100%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 28px 28px;
+}
+
+.post-hero-image.hero-probate {
+    background-image:
+        linear-gradient(135deg, #1a3b2b 0%, #3b1f5e 40%, #7c3aed 100%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 28px 28px;
+}
+
+.post-hero-image.hero-federal {
+    background-image:
+        linear-gradient(135deg, #1a3b2b 0%, #5f1e1e 40%, #dc2626 100%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 28px 28px;
+}
+
+/* Keep icons above the mesh layer */
+.post-hero-image .hero-icon {
+    z-index: 1;
+}

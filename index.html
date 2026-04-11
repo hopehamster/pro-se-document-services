@@ -192,6 +192,9 @@
 </head>
 <body>
 
+    <!-- Branded navigation progress bar -->
+    <div id="nav-progress" aria-hidden="true"></div>
+
     <!-- Sticky Header (Editorial Style) -->
     <nav class="editorial-nav">
         <div class="nav-grid">
@@ -215,7 +218,7 @@
 
     <!-- Hero Section (VPS Model - Asymmetrical) -->
     <header class="hero-editorial">
-        <div class="hero-bg" style="background-image: url('assets/images/hero_authority.webp');" role="img" aria-label="High-end corporate legal boardroom table representing professional document preparation standards"></div>
+        <div class="hero-bg has-lightleak" style="background-image: url('assets/images/hero_authority.webp');" role="img" aria-label="High-end corporate legal boardroom table representing professional document preparation standards"></div>
         <div class="container hero-container">
             <div class="hero-text-block">
                 <span class="eyebrow">Nevada Document Preparation Specialists</span>
@@ -302,16 +305,19 @@
             </div>
             <div class="process-grid">
                 <div class="process-step reveal reveal-delay-1">
+                    <div class="step-icon" data-lottie="assets/lottie/intake.json" data-fallback="assets/lottie/intake.svg" aria-hidden="true"></div>
                     <span class="step-number">01</span>
                     <h3>Intake & Review</h3>
                     <p>Submit your case details through our secure intake form. We review your situation, identify the documents needed, and provide a clear scope of work and timeline within 24 hours.</p>
                 </div>
                 <div class="process-step reveal reveal-delay-2">
+                    <div class="step-icon" data-lottie="assets/lottie/drafting.json" data-fallback="assets/lottie/drafting.svg" aria-hidden="true"></div>
                     <span class="step-number">02</span>
                     <h3>Precision Drafting</h3>
                     <p>Our experienced paralegals draft your documents to court-ready standards. Every filing follows the exact formatting, citation, and procedural requirements of the relevant jurisdiction.</p>
                 </div>
                 <div class="process-step reveal reveal-delay-3">
+                    <div class="step-icon" data-lottie="assets/lottie/deliver.json" data-fallback="assets/lottie/deliver.svg" aria-hidden="true"></div>
                     <span class="step-number">03</span>
                     <h3>Review & Deliver</h3>
                     <p>You review the completed documents and request any revisions at your direction. Once approved, we deliver filing-ready copies with instructions for submission to the court.</p>
@@ -437,7 +443,7 @@
                         <label for="acknowledgement">I understand that Pro Se Document Services is a document preparation service and NOT a law firm. I am representing myself (Pro Se) in this legal matter.</label>
                     </div>
 
-                    <button type="submit" class="btn-primary btn-submit" onclick="this.innerText='Processing...'">Submit Intake Form</button>
+                    <button type="submit" class="btn-primary btn-submit">Submit Intake Form</button>
                 </form>
             </div>
         </div>
@@ -470,6 +476,8 @@
 
     <!-- Three.js for Particle Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Lottie for micro-animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie_light.min.js" defer></script>
     <script>
     // ── Mobile Navigation Toggle ──
     (function() {
@@ -522,6 +530,8 @@
             entries.forEach(function(entry) {
                 if (entry.isIntersecting && !counted) {
                     counted = true;
+                    // Jitter enhancement: morph-in entrance on all stats
+                    stats.forEach(function(s){ s.classList.add('is-morphing'); });
                     stats.forEach(function(stat) {
                         var target = parseInt(stat.getAttribute('data-target'));
                         var suffix = stat.getAttribute('data-suffix') || '';
@@ -535,7 +545,13 @@
                             var ease = 1 - Math.pow(1 - progress, 3);
                             var current = Math.round(ease * target);
                             stat.textContent = current + suffix;
-                            if (progress < 1) requestAnimationFrame(step);
+                            if (progress < 1) {
+                                requestAnimationFrame(step);
+                            } else {
+                                // Jitter enhancement: gold pulse on completion
+                                stat.classList.remove('is-morphing');
+                                stat.classList.add('is-complete');
+                            }
                         }
                         requestAnimationFrame(step);
                     });
@@ -654,6 +670,149 @@
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
         });
+    })();
+
+    // ═══════════════════════════════════════════════════════════
+    // JITTER-STYLE ANIMATIONS (appended Apr 2026)
+    // ═══════════════════════════════════════════════════════════
+
+    // ── Feature 2: Hero Headline Word-by-Word Stagger ──
+    (function() {
+        var h1 = document.querySelector('.hero-text-block h1');
+        if (!h1) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        // Split on <br> first, then on whitespace per line
+        var lines = h1.innerHTML.split(/<br\s*\/?>/i);
+        var html = lines.map(function(line) {
+            return line.trim().split(/\s+/).map(function(w) {
+                return '<span class="hero-word">' + w + '</span>';
+            }).join(' ');
+        }).join('<span class="hero-word br-spacer"></span>');
+
+        h1.innerHTML = html;
+        h1.classList.add('is-split');
+
+        h1.querySelectorAll('.hero-word').forEach(function(w, i) {
+            if (w.classList.contains('br-spacer')) {
+                w.style.animation = 'none';
+                return;
+            }
+            w.style.animationDelay = (0.4 + i * 0.08) + 's';
+        });
+    })();
+
+    // ── Feature 3: Lottie Icons for 3-Step Process ──
+    (function() {
+        var icons = document.querySelectorAll('.step-icon[data-lottie]');
+        if (!icons.length) return;
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function loadFallback(el) {
+            var img = document.createElement('img');
+            img.src = el.getAttribute('data-fallback');
+            img.alt = '';
+            img.setAttribute('aria-hidden', 'true');
+            el.appendChild(img);
+        }
+
+        function initOne(el) {
+            if (reduced || !window.lottie) {
+                loadFallback(el);
+                return;
+            }
+            fetch(el.getAttribute('data-lottie'))
+                .then(function(r) {
+                    if (!r.ok) throw new Error('404');
+                    return r.json();
+                })
+                .then(function(data) {
+                    var anim = lottie.loadAnimation({
+                        container: el,
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: false,
+                        animationData: data
+                    });
+                    el.__anim = anim;
+                })
+                .catch(function() {
+                    loadFallback(el);
+                });
+        }
+
+        // Lottie library loaded with defer — wait for it before initializing
+        function start() {
+            icons.forEach(initOne);
+
+            // Play on scroll into view
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) {
+                        if (e.isIntersecting && e.target.__anim) {
+                            e.target.__anim.goToAndPlay(0, true);
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.4 });
+                icons.forEach(function(el) { io.observe(el); });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', start);
+        } else {
+            // Small delay to let deferred Lottie library load
+            setTimeout(start, 100);
+        }
+    })();
+
+    // ── Feature 7: Branded Progress Bar + Form Spinner ──
+    (function() {
+        var bar = document.getElementById('nav-progress');
+        if (!bar) return;
+
+        function start() {
+            bar.classList.remove('is-done');
+            bar.classList.add('is-active');
+        }
+        function done() {
+            bar.classList.remove('is-active');
+            bar.classList.add('is-done');
+            setTimeout(function() {
+                bar.classList.remove('is-done');
+                bar.style.width = '';
+            }, 400);
+        }
+
+        // Intercept internal link clicks
+        document.addEventListener('click', function(e) {
+            var a = e.target.closest('a[href]');
+            if (!a) return;
+            var href = a.getAttribute('href');
+            if (!href || href.charAt(0) === '#') return;
+            if (a.target === '_blank' || a.hasAttribute('download')) return;
+            try {
+                var url = new URL(a.href, location.href);
+                if (url.origin !== location.origin) return;
+                // Don't trigger on same-page hash links
+                if (url.pathname === location.pathname && url.hash) return;
+                start();
+            } catch (_) {}
+        });
+
+        // Form submit — spinner + progress
+        var form = document.querySelector('.intake-form');
+        if (form) {
+            form.addEventListener('submit', function() {
+                var btn = form.querySelector('.btn-submit');
+                if (btn) btn.classList.add('is-loading');
+                start();
+            });
+        }
+
+        // Reset on back/forward nav
+        window.addEventListener('pageshow', done);
     })();
     </script>
 
