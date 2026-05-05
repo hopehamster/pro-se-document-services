@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Pixel Code (Pro Se Document Services) -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1672996130495161');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1672996130495161&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+
     <title>Pro Se Document Services | Nevada Legal Document Preparation Specialists</title>
     <meta name="description" content="Specialized legal document preparation for Civil Litigation, Probate, and Federal/Appellate filings in Nevada. 'Big Law' precision for Pro Se litigants. NRS 240A Registered.">
     <meta name="keywords" content="Nevada document preparer, Pro Se legal documents, Civil litigation documents, Probate documents, Federal appellate filings, NRS 240A, Las Vegas legal services, self-represented litigant support">
@@ -382,7 +400,7 @@
                     <p><strong>IMPORTANT DISCLOSURE:</strong> We are not attorneys and cannot provide legal advice or representation in court. We prepare documents at your specific direction. Please do not include highly sensitive information like social security numbers or bank account details in this initial form.</p>
                 </div>
 
-                <form action="https://formsubmit.co/prosedocuserv@gmail.com" method="POST" class="intake-form">
+                <form action="https://formsubmit.co/prosedocuserv@gmail.com" method="POST" class="intake-form" id="intakeForm" onsubmit="proseLeadFire();return true;">
                     <!-- FormSubmit Configuration -->
                     <input type="hidden" name="_subject" value="New Client Intake - Pro Se Document Services">
                     <input type="hidden" name="_template" value="table">
@@ -814,6 +832,61 @@
         // Reset on back/forward nav
         window.addEventListener('pageshow', done);
     })();
+    </script>
+
+    <!-- Meta Pixel: track phone-CTA clicks as Contact events -->
+    <script>
+    (function(){
+        if(typeof fbq==='undefined') return;
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+            a.addEventListener('click', function(){
+                fbq('track', 'Contact', {content_name: 'Phone CTA - 725-212-5305'});
+            });
+        });
+    })();
+    </script>
+
+    <!--
+        Lead deduplication — fires both browser Pixel AND server-side CAPI with the same event_id.
+        Meta dedupes via event_id so we get the catch-rate of CAPI without double-counting.
+    -->
+    <script>
+    function proseLeadFire(){
+        try {
+            var f = document.getElementById('intakeForm');
+            if (!f) return;
+            var eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+            var practiceArea = (document.getElementById('practice-area') || {}).value || 'Other';
+
+            // 1. Browser Pixel — instant, frame-perfect
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', {
+                    content_name: practiceArea,
+                    content_category: 'Document Preparation Intake',
+                    eventID: eventId
+                });
+            }
+
+            // 2. Server-side CAPI fallback — catches users with iOS/Safari/blocker that drops the pixel
+            var fbc = document.cookie.match(/_fbc=([^;]+)/);
+            var fbp = document.cookie.match(/_fbp=([^;]+)/);
+            var payload = {
+                event_id: eventId,
+                event_source_url: location.href,
+                name: f.name ? f.name.value : '',
+                email: f.email ? f.email.value : '',
+                phone: f.phone ? f.phone.value : '',
+                practice_area: practiceArea,
+                fbc: fbc ? decodeURIComponent(fbc[1]) : null,
+                fbp: fbp ? decodeURIComponent(fbp[1]) : null,
+                honeypot: f._honey ? f._honey.value : ''
+            };
+            var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon('https://n8n.srv1174724.hstgr.cloud/webhook/prose-lead-capi', blob);
+            }
+        } catch(e) { /* never block form submission */ }
+    }
     </script>
 
 </body>
