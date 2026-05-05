@@ -851,6 +851,24 @@
         Meta dedupes via event_id so we get the catch-rate of CAPI without double-counting.
     -->
     <script>
+    // SHA-256 helper — returns hex digest string
+    async function proseSha256(str){
+        var buf = new TextEncoder().encode(str);
+        var hash = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash))
+            .map(function(b){ return b.toString(16).padStart(2, '0'); })
+            .join('');
+    }
+
+    // Normalize per Meta CAPI spec: trim + lowercase for email; digits-only + E.164 for US phone
+    function proseNormEmail(s){ return (s || '').trim().toLowerCase(); }
+    function proseNormPhone(s){
+        var digits = (s || '').replace(/\D/g, '');
+        if (digits.length === 10) digits = '1' + digits;  // assume US (Pro Se is NV)
+        return digits;
+    }
+    function proseNormName(s){ return (s || '').trim().toLowerCase(); }
+
     function proseLeadFire(){
         try {
             var f = document.getElementById('intakeForm');
@@ -867,24 +885,44 @@
                 });
             }
 
-            // 2. Server-side CAPI fallback — catches users with iOS/Safari/blocker that drops the pixel
-            var fbc = document.cookie.match(/_fbc=([^;]+)/);
-            var fbp = document.cookie.match(/_fbp=([^;]+)/);
-            var payload = {
-                event_id: eventId,
-                event_source_url: location.href,
-                name: f.name ? f.name.value : '',
-                email: f.email ? f.email.value : '',
-                phone: f.phone ? f.phone.value : '',
-                practice_area: practiceArea,
-                fbc: fbc ? decodeURIComponent(fbc[1]) : null,
-                fbp: fbp ? decodeURIComponent(fbp[1]) : null,
-                honeypot: f._honey ? f._honey.value : ''
-            };
-            var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon('https://n8n.srv1174724.hstgr.cloud/webhook/prose-lead-capi', blob);
-            }
+            // 2. Server-side CAPI — hash PII in browser BEFORE sending. n8n must NOT re-hash.
+            var rawEmail = proseNormEmail(f.email ? f.email.value : '');
+            var rawPhone = proseNormPhone(f.phone ? f.phone.value : '');
+            var nameParts = ((f.name ? f.name.value : '') || '').trim().split(/\s+/);
+            var rawFirst = proseNormName(nameParts[0] || '');
+            var rawLast = proseNormName(nameParts.slice(1).join(' ') || '');
+
+            Promise.all([
+                rawEmail ? proseSha256(rawEmail) : Promise.resolve(null),
+                rawPhone ? proseSha256(rawPhone) : Promise.resolve(null),
+                rawFirst ? proseSha256(rawFirst) : Promise.resolve(null),
+                rawLast ? proseSha256(rawLast) : Promise.resolve(null)
+            ]).then(function(hashes){
+                var fbc = document.cookie.match(/_fbc=([^;]+)/);
+                var fbp = document.cookie.match(/_fbp=([^;]+)/);
+                var payload = {
+                    event_id: eventId,
+                    event_name: 'Lead',
+                    event_source_url: location.href,
+                    action_source: 'website',
+                    // Hashed PII (SHA-256 hex). n8n: do NOT re-hash these.
+                    em: hashes[0],
+                    ph: hashes[1],
+                    fn: hashes[2],
+                    ln: hashes[3],
+                    // Non-PII match parameters
+                    fbc: fbc ? decodeURIComponent(fbc[1]) : null,
+                    fbp: fbp ? decodeURIComponent(fbp[1]) : null,
+                    client_user_agent: navigator.userAgent,
+                    // Custom data (NOT hashed)
+                    practice_area: practiceArea,
+                    honeypot: f._honey ? f._honey.value : ''
+                };
+                var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon('https://n8n.srv1174724.hstgr.cloud/webhook/prose-lead-capi', blob);
+                }
+            }).catch(function(){ /* never block form submission */ });
         } catch(e) { /* never block form submission */ }
     }
     </script>
